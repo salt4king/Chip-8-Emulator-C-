@@ -1,2 +1,12 @@
-# Chip-8-Emulator-C-
-This will be a work in progress C++ emulator. My first long-term C++ project after being a Python nerd.
+# Chip-8-Emulator-C++
+
+## Progress
+- [ ] File handling
+- [ ] Opcode fetch/decode loop
+- [ ] Graphics rendering
+- [ ] Keyboard input
+- [ ] Sound
+
+## Notes
+working on ROM file reading
+
