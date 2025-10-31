@@ -7,40 +7,48 @@ using namespace std;
 
 class CHIP8 {
 public:
-    //0x000 to 0x1FF
-    uint8_t V[16]{};
-    uint8_t memory[4096]{};
-    //PC 0x200 and up reerved for ROM
-    uint16_t PC = 0x200;
-    //uint16_t PC{};
-    uint16_t stack[16]{};
-    uint16_t I{};
-    uint8_t SP{};
-    uint8_t display[64 *32]{};
-    uint8_t delay_timer = 60;
-    uint8_t sound_timer = 60;
+    uint8_t V[16]{};            // registers from V0 - VF
+    uint8_t memory[4096]{};     // 4096 bits of memory
+    uint16_t PC = 0x200;        // Pointer counter registed to 0x200
+    uint16_t stack[16]{};       // Stack
+    uint16_t I{};               // Index register
+    uint8_t SP{};               // Stack Pointer
+    uint8_t display[64 *32]{};  // 64 by 32 bit display
+    uint8_t delay_timer = 60;   // 60 Hz delay timer
+    uint8_t sound_timer = 60;   // Buzzer sound
 };
 
 
 
 
 int main() {
-
+    string fileName = "Insert ROM here";
+    loadROM(fileName, chip8);
     
-return 0;
+    return 0;
 }
 
 
 
 
-void loadROM(fileName)
+void loadROM(const string& fileName, CHIP8& chip8)
 {
-  ifstream inFile(fileName);
+    fileSize{};
+    ifstream inFile(fileName, , ios::binary | ios::ate);
   
-  if (inFile.fail())
-  {
-    cout << "File failed to load" << endl;
-    return 1;
-  }
-  
+    if (inFile.fail())
+    {
+        cout << "File failed to load" << endl;
+        return 1;
+    }
+
+    
+    
+    fileSize = inFile.tellg();
+    inFile.seekg(0, ios::beg);
+
+    
+
+
+    
 }
