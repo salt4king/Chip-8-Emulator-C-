@@ -19,11 +19,14 @@ public:
 };
 
 
-
+void loadROM(const string& fileName, CHIP8& chip8);
 
 int main() {
+    CHIP8 chip8;
+    
     string fileName = "Insert ROM here";
-    loadROM(fileName, chip8);
+    
+    loadROM(fileName, chip8);  //This file will load the ROM data onto memory from 0x200 and up.
     
     return 0;
 }
@@ -33,22 +36,26 @@ int main() {
 
 void loadROM(const string& fileName, CHIP8& chip8)
 {
-    fileSize{};
-    ifstream inFile(fileName, , ios::binary | ios::ate);
+    uint16_t fileSize{};
+    ifstream inFile(fileName, ios::binary | ios::ate);
   
-    if (inFile.fail())
+    if (inFile.fail()) // Fail safe
     {
         cout << "File failed to load" << endl;
-        return 1;
+        return;
     }
 
     
     
-    fileSize = inFile.tellg();
+    fileSize = inFile.tellg(); // reads ROM file size
     inFile.seekg(0, ios::beg);
 
-    
+    vector<char> buffer(fileSize);
 
-
+    for (int i = 0; i < fileSize && (chip8.PC + i) < 4096; i++) //loads data onto memory
+    {
+        chip8.memory[chip8.PC + i] = static_cast<uint8_t>(buffer[i]);
+    }
     
 }
+
